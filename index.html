@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pomodoro Clock</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <div class="container-fluid text-center">
+    <h1>Pomodoro Clock</h1>
+    <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+    <div class="row">
+      <div class="col-xs-6 col-md-4" id="start">
+        <button class="btn btn-primary">Start</button>
+      </div>
+      <div class="col-xs-6 col-md-4" id="clock">Clock/Count</div>
+      <div class="col-xs-6 col-md-4" id="pause">
+        <button class="btn btn-danger">Pause</button>
+      </div>
+    </div>
+    <!-- Columns are always 50% wide, on mobile and desktop -->
+    <div class="row">
+      <div class="col-xs-6" id="sessionLength">
+        <form>
+          <input id="session" type="text" name="session-length" value="0" />
+            <span>
+              <input type="button" class="btn btn-default" onclick="incrementSession()" value="+" />
+              <input type="button" class="btn btn-default" onclick="decreaseSession()" value="-" />
+            </span>
+        </form>
+      </div>
+      <div class="col-xs-6" id="breakLength">
+        <form>
+          <input id="break" type="number" name="break-length" value="0" />
+          <span>
+            <input type="button" class="btn btn-default" onclick="incrementBreak()" value="+" />
+            <input type="button" class="btn btn-default" onclick="decreaseBreak()" value="-" />
+          </span>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
