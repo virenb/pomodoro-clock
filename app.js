@@ -33,3 +33,15 @@ function decreaseBreak() {
   }
   document.getElementById('break').value = value;
 }
+
+document.getElementById('clock').innerHTML = document.getElementById('session');
+
+// Make a function to start the counter
+// Has to count down from the value of session
+// Has to display mm:ss
+
+function reset() {
+  document.getElementById('session').value = 25;
+  document.getElementById('clock').innerHTML = 25;
+  document.getElementById('break').value = 5;
+}

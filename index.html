@@ -16,9 +16,9 @@
     <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
     <div class="row">
       <div class="col-xs-6 col-md-4" id="start">
-        <button class="btn btn-primary">Start</button>
+      <input type="button" class="btn btn-primary" onclick="startClock(document.getElementById('session').value)" value="Start" />
       </div>
-      <div class="col-xs-6 col-md-4" id="clock">Clock/Count</div>
+      <div class="col-xs-6 col-md-4" id="clock">25</div>
       <div class="col-xs-6 col-md-4" id="pause">
         <button class="btn btn-danger">Pause</button>
       </div>
@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-xs-6" id="sessionLength">
         <form>
-          <input id="session" type="text" name="session-length" value="0" />
+          <input id="session" type="text" name="session-length" value="25" />
             <span>
               <input type="button" class="btn btn-default" onclick="incrementSession()" value="+" />
               <input type="button" class="btn btn-default" onclick="decreaseSession()" value="-" />
@@ -36,12 +36,17 @@
       </div>
       <div class="col-xs-6" id="breakLength">
         <form>
-          <input id="break" type="number" name="break-length" value="0" />
+          <input id="break" type="number" name="break-length" value="5" />
           <span>
             <input type="button" class="btn btn-default" onclick="incrementBreak()" value="+" />
             <input type="button" class="btn btn-default" onclick="decreaseBreak()" value="-" />
           </span>
         </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <input type="button" class="btn btn-default" name="reset" value="Reset" onclick="reset()" />
       </div>
     </div>
   </div>
