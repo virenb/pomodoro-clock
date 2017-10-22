@@ -40,8 +40,29 @@ document.getElementById('clock').innerHTML = document.getElementById('session');
 // Has to count down from the value of session
 // Has to display mm:ss
 
+var current, initial, onPause;
+var times = { "current": current, "initial": initial };
+
+function start() {
+  onBreak = false;
+  times.initial = +document.getElementById('session').innerHTML * 60;
+  times.current = +document.getElementById('session').innerHTML * 60;
+  startInterval = setInterval(countdown, 1000);
+}
+
+function startBreak() {
+  times.initial = +document.getElementById('break').innerHTML * 60;
+  current = +document.getElementById('break').innerHTML * 60;
+  onBreak = true;
+  startInterval = setInterval(countdown, 1000);
+}
+
 function reset() {
   document.getElementById('session').value = 25;
   document.getElementById('clock').innerHTML = 25;
   document.getElementById('break').value = 5;
+}
+
+function pause() {
+
 }
