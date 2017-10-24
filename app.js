@@ -12,7 +12,7 @@ function increaseSession() {
     sessionMinutes = value;
     document.getElementById('sessionLength').innerHTML = value;
   }
-};
+}
 
 function decreaseSession() {
   if (!activeSession) {
@@ -23,7 +23,7 @@ function decreaseSession() {
       document.getElementById('sessionLength').innerHTML = value;
     }
   }
-};
+}
 
 function increaseBreak() {
   if (!activeBreak) {
@@ -32,7 +32,7 @@ function increaseBreak() {
     breakMinutes = value;
     document.getElementById('breakLength').innerHTML = value;
   }
-};
+}
 
 function decreaseBreak() {
   if (!activeBreak) {
@@ -43,5 +43,63 @@ function decreaseBreak() {
       document.getElementById('breakLength').innerHTML = value;
     }
   }
-};
+}
 
+function startToPause() {
+  if (!activeSession) {
+    activeSession = true;
+    clockResetToggle();
+    document.getElementById('startToPause').value = "Pause";
+    runClock();
+  }
+  else {
+    activeSession = false;
+    clockResetToggle();
+    document.getElementById('startToPause').value = "Resume";
+  }
+}
+
+function clockResetToggle() {
+  if (activeSession) {
+    document.getElementById('resetClock').classList.add('disabled');
+  } else {
+    document.getElementById('resetClock').classList.remove('disabled');
+  }
+}
+
+function resetClock() {
+  if (!activeSession) {
+    sessionMinutes = parseInt(document.getElementById('sessionLength').innerHTML);
+    sessionSeconds = 0;
+    document.getElementById('clock').innerHTML = sessionMinutes + ":" + "0" + sessionSeconds;
+    document.getElementById('startToPause').value = "Start";
+  }
+}
+
+function runClock() {
+  if (activeSession) {
+    setTimeout(countdown, 1000);
+  }
+}
+
+function countdown() {
+  if (sessionSeconds === 0) {
+    if (sessionMinutes === 0) {
+      activeSession = false;
+      activeBreak = true;
+      runBreak();
+      return;
+    }
+    breakMinutes = parseInt(document.getElementById('breakLength').innerHTML);
+    sessionMinutes--;
+    sessionSeconds = 59;
+  } else {
+    sessionSeconds--;
+  }
+  if (sessionSeconds < 10) {
+    document.getElementById('clock').innerHTML = sessionMinutes + ":" + "0" + sessionSeconds;
+  } else {
+    document.getElementById('clock').innerHTML = sessionMinutes + ":" + sessionSeconds;
+  }
+runClock();
+}
