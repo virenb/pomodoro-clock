@@ -6,6 +6,7 @@ $(document).ready(function() {
   var breakRunning = false;
   var sessionSeconds = 0;
   var breakSeconds = 0;
+  $("#pauseBreak").hide();
 
   $("#start").on("click", function() {
     if (!sessionRunning) {
@@ -20,17 +21,6 @@ $(document).ready(function() {
     }
   });
 
-  $("#startBreak").on("click", function () {
-    if (!breakRunning) {
-      breakRunning = true;
-      runBreak();
-      $(this).val("Pause");
-    } else {
-      breakRunning = false;
-      $(this).val("Resume");
-    }
-  });
-
   $("#reset").on("click", function() {
     if (!sessionRunning) {
       sessionMinutes = parseInt($("#sessionLength").html());
@@ -41,7 +31,7 @@ $(document).ready(function() {
   });
 
   function resetToggle() {
-    if (sessionRunning) {
+    if (sessionRunning === true) {
       $("#reset").addClass('.disabled');
     } else {
       $("#reset").removeClass('.disabled');
@@ -75,7 +65,6 @@ $(document).ready(function() {
     }
   }
 
-
   $("#increaseSession").on("click", function() {
     if (!sessionRunning) {
       var value = parseInt($("#sessionLength").html());
@@ -97,17 +86,24 @@ $(document).ready(function() {
   });
 
   function runBreak() {
+    $("#start").hide();
       setTimeout(function () {
         if (breakSeconds === 0) {
           if (breakMinutes === 0) {
             breakRunning = false;
-            resetToggle();
+            $("#start").show();
+            $("#reset").prop('disabled', false);
+            $("#breakMsg").html('');
             return;
           }
           breakMinutes--;
           breakSeconds = 59;
+            $("#reset").prop('disabled', true);
+            $("#breakMsg").text("Enjoy your break!");
         } else {
           breakSeconds--;
+            $("#reset").prop('disabled', true);
+            $("#breakMsg").text("Enjoy your break!");
         }
         if (breakSeconds < 10) {
           $("#clock").html(breakMinutes + ":" + "0" + breakSeconds);
