@@ -26,6 +26,7 @@ $(document).ready(function() {
       sessionMinutes = parseInt($("#sessionLength").html());
       sessionSeconds = 0;
       $("#clock").html(sessionMinutes + ":" + "0" + sessionSeconds);
+      $("#start").show();
       $("#start").val("Start");
     }
   });
@@ -91,7 +92,6 @@ $(document).ready(function() {
         if (breakSeconds === 0) {
           if (breakMinutes === 0) {
             breakRunning = false;
-            $("#start").show();
             $("#reset").prop('disabled', false);
             $("#breakMsg").html('');
             return;
